@@ -1,23 +1,23 @@
 
 import React from 'react';
-import Hero from '@/components/home/Hero';
-import GameGrid from '@/components/home/GameGrid';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
+import DownloadSection from '@/components/eaglercraft/DownloadSection';
 import Watermark from '@/components/shared/Watermark';
 
-const Index = () => {
+const Eaglercraft = () => {
   return (
     <div className="min-h-screen bg-carbon-black">
       <Watermark />
       <Navbar />
-      <main>
-        <Hero />
-        <GameGrid />
+      
+      <main className="pt-20">
+        <DownloadSection />
       </main>
+      
       <Footer />
     </div>
   );
 };
 
-export default Index;
+export default Eaglercraft;

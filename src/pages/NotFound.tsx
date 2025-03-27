@@ -1,25 +1,35 @@
-import { useLocation } from "react-router-dom";
-import { useEffect } from "react";
+
+import React from "react";
+import { Link } from "react-router-dom";
+import Navbar from '@/components/layout/Navbar';
+import Footer from '@/components/layout/Footer';
+import Button from "@/components/shared/Button";
+import Watermark from "@/components/shared/Watermark";
 
 const NotFound = () => {
-  const location = useLocation();
-
-  useEffect(() => {
-    console.error(
-      "404 Error: User attempted to access non-existent route:",
-      location.pathname
-    );
-  }, [location.pathname]);
-
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">404</h1>
-        <p className="text-xl text-gray-600 mb-4">Oops! Page not found</p>
-        <a href="/" className="text-blue-500 hover:text-blue-700 underline">
-          Return to Home
-        </a>
-      </div>
+    <div className="min-h-screen bg-carbon-black">
+      <Watermark />
+      <Navbar />
+      
+      <main className="pt-20">
+        <div className="min-h-screen flex items-center justify-center px-4">
+          <div className="glass-morphism rounded-lg p-8 blue-outline text-center max-w-lg mx-auto">
+            <h1 className="text-6xl font-bold text-primary mb-4">404</h1>
+            <p className="text-xl text-white mb-8">Oops! Page not found</p>
+            <p className="text-gray-400 mb-8">
+              The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.
+            </p>
+            <Link to="/">
+              <Button>
+                Return to Home
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </main>
+      
+      <Footer />
     </div>
   );
 };
