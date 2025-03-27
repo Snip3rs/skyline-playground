@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Games from "./pages/Games";
+import GamePlayer from "./pages/GamePlayer";
 import Eaglercraft from "./pages/Eaglercraft";
 import Proxy from "./pages/Proxy";
 import Discord from "./pages/Discord";
@@ -22,6 +23,7 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/games" element={<Games />} />
+          <Route path="/games/:id" element={<GamePlayer />} />
           <Route path="/eaglercraft" element={<Eaglercraft />} />
           <Route path="/proxy" element={<Proxy />} />
           <Route path="/discord" element={<Discord />} />

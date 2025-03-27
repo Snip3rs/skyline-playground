@@ -1,5 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Navbar from '@/components/layout/Navbar';
 import Footer from '@/components/layout/Footer';
 import Card from '@/components/shared/Card';
@@ -10,6 +11,7 @@ interface Game {
   title: string;
   image: string;
   category: string;
+  url: string;
 }
 
 const Games = () => {
@@ -26,18 +28,18 @@ const Games = () => {
       
       // Sample game data inspired by NativeGames
       const gameData = [
-        { id: 1, title: 'Slope', image: 'https://lite.nativegames.net/assets/images/games/slope.jpg', category: 'Arcade' },
-        { id: 2, title: '2048', image: 'https://lite.nativegames.net/assets/images/games/2048.jpg', category: 'Puzzle' },
-        { id: 3, title: 'Wordle', image: 'https://lite.nativegames.net/assets/images/games/wordle.jpg', category: 'Word' },
-        { id: 4, title: 'Basketball Stars', image: 'https://lite.nativegames.net/assets/images/games/basketball-stars.jpg', category: 'Sports' },
-        { id: 5, title: 'Cut the Rope', image: 'https://lite.nativegames.net/assets/images/games/cut-the-rope.jpg', category: 'Puzzle' },
-        { id: 6, title: 'Temple Run 2', image: 'https://lite.nativegames.net/assets/images/games/temple-run-2.jpg', category: 'Runner' },
-        { id: 7, title: 'Subway Surfers', image: 'https://lite.nativegames.net/assets/images/games/subway-surfers.jpg', category: 'Runner' },
-        { id: 8, title: 'Geometry Dash', image: 'https://lite.nativegames.net/assets/images/games/geometry-dash.jpg', category: 'Arcade' },
-        { id: 9, title: 'Flappy Bird', image: 'https://lite.nativegames.net/assets/images/games/flappy-bird.jpg', category: 'Arcade' },
-        { id: 10, title: 'Minecraft Classic', image: 'https://lite.nativegames.net/assets/images/games/minecraft-classic.jpg', category: 'Adventure' },
-        { id: 11, title: 'Angry Birds', image: 'https://lite.nativegames.net/assets/images/games/angry-birds.jpg', category: 'Puzzle' },
-        { id: 12, title: 'Chess', image: 'https://lite.nativegames.net/assets/images/games/chess.jpg', category: 'Board' },
+        { id: 1, title: 'Slope', image: 'https://lite.nativegames.net/assets/images/games/slope.jpg', category: 'Arcade', url: 'https://lite.nativegames.net/slope' },
+        { id: 2, title: '2048', image: 'https://lite.nativegames.net/assets/images/games/2048.jpg', category: 'Puzzle', url: 'https://lite.nativegames.net/2048' },
+        { id: 3, title: 'Wordle', image: 'https://lite.nativegames.net/assets/images/games/wordle.jpg', category: 'Word', url: 'https://lite.nativegames.net/wordle' },
+        { id: 4, title: 'Basketball Stars', image: 'https://lite.nativegames.net/assets/images/games/basketball-stars.jpg', category: 'Sports', url: 'https://lite.nativegames.net/basketball-stars' },
+        { id: 5, title: 'Cut the Rope', image: 'https://lite.nativegames.net/assets/images/games/cut-the-rope.jpg', category: 'Puzzle', url: 'https://lite.nativegames.net/cut-the-rope' },
+        { id: 6, title: 'Temple Run 2', image: 'https://lite.nativegames.net/assets/images/games/temple-run-2.jpg', category: 'Runner', url: 'https://lite.nativegames.net/temple-run-2' },
+        { id: 7, title: 'Subway Surfers', image: 'https://lite.nativegames.net/assets/images/games/subway-surfers.jpg', category: 'Runner', url: 'https://lite.nativegames.net/subway-surfers' },
+        { id: 8, title: 'Geometry Dash', image: 'https://lite.nativegames.net/assets/images/games/geometry-dash.jpg', category: 'Arcade', url: 'https://lite.nativegames.net/geometry-dash' },
+        { id: 9, title: 'Flappy Bird', image: 'https://lite.nativegames.net/assets/images/games/flappy-bird.jpg', category: 'Arcade', url: 'https://lite.nativegames.net/flappy-bird' },
+        { id: 10, title: 'Minecraft Classic', image: 'https://lite.nativegames.net/assets/images/games/minecraft-classic.jpg', category: 'Adventure', url: 'https://lite.nativegames.net/minecraft-classic' },
+        { id: 11, title: 'Angry Birds', image: 'https://lite.nativegames.net/assets/images/games/angry-birds.jpg', category: 'Puzzle', url: 'https://lite.nativegames.net/angry-birds' },
+        { id: 12, title: 'Chess', image: 'https://lite.nativegames.net/assets/images/games/chess.jpg', category: 'Board', url: 'https://lite.nativegames.net/chess' },
       ];
       
       setGames(gameData);
@@ -54,10 +56,6 @@ const Games = () => {
     const matchesSearch = game.title.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesCategory && matchesSearch;
   });
-
-  const handleGameClick = (id: number) => {
-    window.open(`https://lite.nativegames.net/game/${id}`, '_blank');
-  };
 
   return (
     <div className="min-h-screen bg-carbon-black">
@@ -115,12 +113,12 @@ const Games = () => {
             ) : filteredGames.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {filteredGames.map((game) => (
-                  <Card
-                    key={game.id}
-                    title={game.title}
-                    image={game.image}
-                    onClick={() => handleGameClick(game.id)}
-                  />
+                  <Link to={`/games/${game.id}`} key={game.id}>
+                    <Card
+                      title={game.title}
+                      image={game.image}
+                    />
+                  </Link>
                 ))}
               </div>
             ) : (

@@ -1,5 +1,6 @@
 
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Card from '../shared/Card';
 
 const GameGrid = () => {
@@ -11,10 +12,6 @@ const GameGrid = () => {
     { id: 5, title: 'Subway Surfers', image: 'https://lite.nativegames.net/assets/images/games/subway-surfers.jpg' },
     { id: 6, title: 'Wordle', image: 'https://lite.nativegames.net/assets/images/games/wordle.jpg' },
   ];
-
-  const handleGameClick = (id: number) => {
-    window.open(`https://lite.nativegames.net/game/${id}`, '_blank');
-  };
 
   return (
     <section className="py-24 bg-carbon-black">
@@ -29,27 +26,25 @@ const GameGrid = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {games.map((game) => (
-            <Card
-              key={game.id}
-              title={game.title}
-              image={game.image}
-              onClick={() => handleGameClick(game.id)}
-            />
+            <Link to={`/games/${game.id}`} key={game.id}>
+              <Card
+                title={game.title}
+                image={game.image}
+              />
+            </Link>
           ))}
         </div>
         
         <div className="text-center mt-12">
-          <a 
-            href="https://lite.nativegames.net/" 
-            target="_blank" 
-            rel="noopener noreferrer"
+          <Link 
+            to="/games"
             className="inline-flex items-center text-primary hover:text-white transition-colors"
           >
             <span>View all games</span>
             <svg className="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
