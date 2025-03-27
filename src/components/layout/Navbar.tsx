@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
@@ -25,6 +24,7 @@ const Navbar = () => {
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Games', path: '/games' },
+    { name: 'Apps', path: '/apps' },
     { name: 'Eaglercraft', path: '/eaglercraft' },
     { name: 'Proxy', path: '/proxy' },
     { name: 'Discord', path: '/discord' },
@@ -82,7 +82,6 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu */}
       <div className={cn(
         "md:hidden transition-all duration-300 overflow-hidden",
         isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"

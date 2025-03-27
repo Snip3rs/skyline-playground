@@ -11,6 +11,7 @@ import GamePlayer from "./pages/GamePlayer";
 import Eaglercraft from "./pages/Eaglercraft";
 import Proxy from "./pages/Proxy";
 import Discord from "./pages/Discord";
+import Apps from "./pages/Apps";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/eaglercraft" element={<Eaglercraft />} />
           <Route path="/proxy" element={<Proxy />} />
           <Route path="/discord" element={<Discord />} />
+          <Route path="/apps" element={<Apps />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
